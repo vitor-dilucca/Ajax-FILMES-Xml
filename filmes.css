@@ -1,0 +1,12 @@
+body{
+  background-color: rgb(65, 41, 70);
+  color: white;
+}
+
+#btn{
+  /* border: 1px solid red; */
+}
+
+#div-filmes{
+  border: 1px solid red;
+}

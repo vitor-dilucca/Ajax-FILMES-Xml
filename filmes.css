@@ -1,6 +1,6 @@
 body{
   background-color: rgb(65, 41, 70);
-  color: white;
+  color: rgb(229, 227, 236);
 }
 
 #btn{
@@ -9,4 +9,11 @@ body{
 
 #div-filmes{
   border: 1px solid red;
+}
+
+.filme{
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: rgb(42, 38, 59);
 }

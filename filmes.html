@@ -14,17 +14,54 @@
         xmlHttp.onreadystatechange =()=>{
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             let xmlFilmes = xmlHttp.responseText
-            let divFilmes = document.querySelector("#div-filmes")
-            divFilmes.innerHTML = xmlFilmes
-            console.log(xmlFilmes)
             
             let parser = new DOMParser()
             domFilmes = parser.parseFromString(xmlFilmes, 'text/xml')
-            console.log(domFilmes)
             
             jsonFilmes = xmlToJson(domFilmes)
-            console.log(jsonFilmes)
             
+            for (let i in jsonFilmes.filmes.filme) {
+
+              // console.log(jsonFilmes.filmes.filme[i])
+              let div = document.createElement('div')
+              let item = jsonFilmes.filmes.filme[i]
+              
+              //recuperando generos, fazendo o loop no array do genero do filme de cada um,
+              let genero = ''
+              for (let g in item.genero){
+                if(genero){
+                  genero+= ', '
+                }
+                genero += item.genero[g]['#text']
+              }
+
+              //recuperando os atores
+              let ator=''
+              for (let a = 0; a < item.elenco.ator.length; a++) {
+                if (ator) {
+                  ator+=', '
+                }
+                ator+=item.elenco.ator[a]['#text']
+              }
+
+              div.innerHTML= 
+              '<div class="row">'+
+                '<div class="col filme">'+
+                  '<h2>'+item['titulo']['#text']+'</h2>'+
+                  '<p><strong>Resumo: </strong>'+jsonFilmes.filmes.filme[i].resumo['#text'] +' Resumo do filme:</p>'+
+                  '<p><strong>Gênero: </strong> '+genero+'</p>'+
+                  '<p><strong>Elenco: </strong> '+ator+'</p>'+
+                  '<p><strong>Data de lançamento em '+item.dataLancamento['@attributes'].pais+': </strong>'+item.dataLancamento['#text']+'</p>'+
+                '</div>'+
+              '</div>'
+
+              let lista = document.querySelector('#lista')
+              lista.appendChild(div)
+              
+            }
+            console.log(document)
+            console.log(jsonFilmes)
+
           }
           
           if (xmlHttp.readyState == 4 && xmlHttp.status == 404) {
@@ -33,7 +70,7 @@
 
         }
         xmlHttp.send()
-        console.log(xmlHttp)
+        // console.log(xmlHttp)
       }
     </script>
   </head>
@@ -47,25 +84,14 @@
       </div>
     </nav>
 
-    <div class="container">
-      
-      <div class="row">
+    <div class="container" id="lista">
+
+      <div id="row-btn" class="row mb-5">
         <div class="col">
           <button onclick="getFilmes()" type="button" class="btn btn-danger btn-lg">Mostrar filmes</button>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col">
-          <p><strong>Titulo:</strong> Titulo do filme:</p>
-          <p><strong>Resumo:</strong> Resumo do filme:</p>
-          <p><strong>Gênero:</strong> Gênero do filme:</p>
-          <p><strong>Elenco:</strong> Elenco do filme:</p>
-          <p><strong>Data de lançamento:</strong> Data de lançamento do filme:</p>
-          <hr>
-        </div>
-      </div>
-
+      
     </div>
 
   </body>

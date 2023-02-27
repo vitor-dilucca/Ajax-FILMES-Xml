@@ -29,9 +29,7 @@
               //recuperando generos, fazendo o loop no array do genero do filme de cada um,
               let genero = ''
               for (let g in item.genero){
-                if(genero){
-                  genero+= ', '
-                }
+                if(genero) genero+= ', '
                 genero += item.genero[g]['#text']
               }
 
@@ -51,7 +49,7 @@
                   '<p><strong>Resumo: </strong>'+jsonFilmes.filmes.filme[i].resumo['#text'] +' Resumo do filme:</p>'+
                   '<p><strong>Gênero: </strong> '+genero+'</p>'+
                   '<p><strong>Elenco: </strong> '+ator+'</p>'+
-                  '<p><strong>Data de lançamento em '+item.dataLancamento['@attributes'].pais+': </strong>'+item.dataLancamento['#text']+'</p>'+
+                  '<p><strong>Data de lançamento ('+item.dataLancamento['@attributes'].pais+'): </strong>'+item.dataLancamento['#text']+'</p>'+
                 '</div>'+
               '</div>'
 

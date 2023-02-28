@@ -9,7 +9,8 @@
     <script>
       function getFilmes(){
         let xmlHttp = new XMLHttpRequest()
-        xmlHttp.open('GET', 'filmes.xml')
+        //adiucionamos o ?t=' + new Date().getTime() para poder pegar o xml atual, pois por um problma de que o xml estav aficando guardado no cache nao estava atualizadno o xml.
+        xmlHttp.open('GET', 'filmes.xml?t=' + new Date().getTime());
 
         xmlHttp.onreadystatechange =()=>{
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -21,7 +22,7 @@
             jsonFilmes = xmlToJson(domFilmes)
             
             for (let i in jsonFilmes.filmes.filme) {
-
+              console.log(i);
               // console.log(jsonFilmes.filmes.filme[i])
               let div = document.createElement('div')
               let item = jsonFilmes.filmes.filme[i]

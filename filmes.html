@@ -23,48 +23,48 @@
             
             for (let i in jsonFilmes.filmes.filme) {
               console.log(i);
-              // console.log(jsonFilmes.filmes.filme[i])
-              let div = document.createElement('div')
+              console.log(jsonFilmes.filmes.filme[i])
+              let divFilme = document.createElement('div')
               let item = jsonFilmes.filmes.filme[i]
               
               //recuperando generos, fazendo o loop no array do genero do filme de cada um,
               let genero = ''
-              for (let g in item.genero){
+              for (let i in item.genero){
                 if(genero) genero+= ', '
-                genero += item.genero[g]['#text']
+                genero += item.genero[i]['#text']
               }
 
               //recuperando os atores
               let ator=''
-              for (let a = 0; a < item.elenco.ator.length; a++) {
+              for (let i = 0; i < item.elenco.ator.length; i++) {
                 if (ator) {
                   ator+=', '
                 }
-                ator+=item.elenco.ator[a]['#text']
+                ator+=item.elenco.ator[i]['#text']
               }
 
-              div.innerHTML= 
+              divFilme.innerHTML= 
               '<div class="row">'+
                 '<div class="col filme">'+
                   '<h2>'+item['titulo']['#text']+'</h2>'+
-                  '<p><strong>Resumo: </strong>'+jsonFilmes.filmes.filme[i].resumo['#text'] +' Resumo do filme:</p>'+
+                  '<p><strong>Resumo: </strong>'+jsonFilmes.filmes.filme[i].resumo['#text'] +'</p>'+
                   '<p><strong>Gênero: </strong> '+genero+'</p>'+
                   '<p><strong>Elenco: </strong> '+ator+'</p>'+
-                  '<p><strong>Data de lançamento ('+item.dataLancamento['@attributes'].pais+'): </strong>'+item.dataLancamento['#text']+'</p>'+
                 '</div>'+
               '</div>'
 
               let lista = document.querySelector('#lista')
-              lista.appendChild(div)
+              lista.appendChild(divFilme)
               
             }
             console.log(document)
             console.log(jsonFilmes)
-
+            
           }
           
           if (xmlHttp.readyState == 4 && xmlHttp.status == 404) {
-            //
+            let lista = document.querySelector('#lista')
+            lista.innerHTML+="<p>Erro 404</p>"
           }
 
         }

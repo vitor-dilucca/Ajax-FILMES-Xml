@@ -43,16 +43,16 @@
                 ator+=item.elenco.ator[i]['#text']
               }
 
-              divFilme.innerHTML= 
-              '<div class="row">'+
-                '<div class="col filme">'+
-                  '<h2>'+item['titulo']['#text']+'</h2>'+
-                  '<p><strong>Resumo: </strong>'+jsonFilmes.filmes.filme[i].resumo['#text'] +'</p>'+
-                  '<p><strong>Gênero: </strong> '+genero+'</p>'+
-                  '<p><strong>Elenco: </strong> '+ator+'</p>'+
-                  '<p><strong>Data de lançamento ('+item.dataLancamento['@attributes'].pais+'): </strong>'+item.dataLancamento['#text']+'</p>'+
-                '</div>'+
-              '</div>'
+              divFilme.innerHTML= `
+              <div class="row">
+                <div class="col filme">
+                  <h2>${item['titulo']['#text']}</h2>
+                  <p><strong>Resumo: </strong>${jsonFilmes.filmes.filme[i].resumo['#text']} </p>
+                  <p><strong>Gênero: </strong> ${genero}</p>
+                  <p><strong>Elenco: </strong> ${ator}</p>
+                  <p><strong>Data de lançamento (${item.dataLancamento['@attributes'].pais}): </strong>${item.dataLancamento['#text']}</p>
+                </div>
+              </div>`
 
               let lista = document.querySelector('#lista')
               lista.appendChild(divFilme)
@@ -80,7 +80,7 @@
     <nav  class="navbar navbar-dark bg-dark mb-4">
       <div class="container">
         <div class="navbar-brand mb-0 h1">
-          <h3>Vitor Filmes!!1!</h3>
+          <h3>Vitor Filmes!!!!</h3>
         </div>
       </div>
     </nav>
